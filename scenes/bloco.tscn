@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cy7cv4smhn0rs"]
 
-[ext_resource type="Texture2D" uid="uid://byhdx1be8664p" path="res://block.png" id="1_247xi"]
+[ext_resource type="Texture2D" uid="uid://byhdx1be8664p" path="res://assets/block.png" id="1_dcobq"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_247xi"]
 
@@ -11,7 +11,7 @@ size = Vector2(128, 128)
 physics_material_override = SubResource("PhysicsMaterial_247xi")
 
 [node name="Icon" type="Sprite2D" parent="." unique_id=1544893706]
-texture = ExtResource("1_247xi")
+texture = ExtResource("1_dcobq")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=696844111]
 shape = SubResource("RectangleShape2D_66ncr")

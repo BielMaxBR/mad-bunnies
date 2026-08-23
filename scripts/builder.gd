@@ -18,8 +18,8 @@ var pos: Vector2i # usado pra posição da grid do mouse
 
 signal builded
 func add_items():
-	add("bloco",preload('res://bloco.tscn'))
-	add("roda",preload('res://roda.tscn'),[Vector2.LEFT,Vector2.RIGHT,Vector2.DOWN])
+	add("bloco",preload('res://scenes/bloco.tscn'))
+	add("roda",preload('res://scenes/roda.tscn'),[Vector2.LEFT,Vector2.RIGHT,Vector2.DOWN])
 
 func is_on_grid(pos: Vector2i):
 	var rect = Rect2i(Vector2.ZERO,size)
@@ -35,7 +35,7 @@ func add(_name, _scene,falses = []):
 	create_item_buttom(_name,_scene)
 
 func create_item_buttom(_name,_scene):
-	var button: TextureButton = preload("res://botao_default.tscn").instantiate()
+	var button: TextureButton = preload("res://scenes/botao_default.tscn").instantiate()
 	button.get_node("Label").text = _name
 	$GUI/Control/MenuLeft/VBoxContainer.add_child(button)
 	

@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://bqyrc4f4pmx42"]
 
-[ext_resource type="Texture2D" uid="uid://0bs1nbe3pdrv" path="res://quadrado.png" id="1_h1ki1"]
-[ext_resource type="Script" uid="uid://cbndjkmcj5ur" path="res://builder.gd" id="1_nebbf"]
-[ext_resource type="PackedScene" uid="uid://cy7cv4smhn0rs" path="res://bloco.tscn" id="2_clihi"]
-[ext_resource type="PackedScene" uid="uid://x2mhqdj21xe" path="res://roda.tscn" id="3_nebbf"]
+[ext_resource type="Texture2D" uid="uid://0bs1nbe3pdrv" path="res://assets/quadrado.png" id="1_h1ki1"]
+[ext_resource type="Script" uid="uid://cbndjkmcj5ur" path="res://scripts/builder.gd" id="1_nebbf"]
+[ext_resource type="PackedScene" uid="uid://cy7cv4smhn0rs" path="res://scenes/bloco.tscn" id="2_clihi"]
+[ext_resource type="PackedScene" uid="uid://x2mhqdj21xe" path="res://scenes/roda.tscn" id="3_nebbf"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_l5ofj"]
 texture = ExtResource("1_h1ki1")

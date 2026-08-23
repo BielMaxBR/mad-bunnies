@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://x2mhqdj21xe"]
 
-[ext_resource type="Texture2D" uid="uid://824u5gribs2u" path="res://icon.svg" id="1_1k3js"]
+[ext_resource type="Texture2D" uid="uid://824u5gribs2u" path="res://assets/icon.svg" id="1_tqrvh"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_28aoi"]
 
@@ -30,7 +30,7 @@ physics_material_override = SubResource("PhysicsMaterial_28aoi")
 [node name="Icon2" type="Sprite2D" parent="." unique_id=1764246401]
 visible = false
 position = Vector2(0, -3)
-texture = ExtResource("1_1k3js")
+texture = ExtResource("1_tqrvh")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=872000213]
 position = Vector2(0, -61)
@@ -56,4 +56,4 @@ motor_target_velocity = 69.81317
 [node name="Icon" type="Sprite2D" parent="." unique_id=1987158766]
 position = Vector2(-5.9604645e-08, -60.999996)
 scale = Vector2(0.988429, 0.08023854)
-texture = ExtResource("1_1k3js")
+texture = ExtResource("1_tqrvh")
