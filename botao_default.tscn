@@ -1,0 +1,47 @@
+[gd_scene format=3 uid="uid://wwtsl61fqyoc"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_66ncr"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="LabelSettings" id="LabelSettings_nebbf"]
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+
+[node name="botao" type="TextureButton" unique_id=1132199356]
+size_flags_horizontal = 4
+texture_normal = SubResource("ViewportTexture_66ncr")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=197834787]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+color = Color(0.4509804, 0.4509804, 0.4509804, 0.5176471)
+
+[node name="Label" type="Label" parent="." unique_id=1573181290]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -31.5
+offset_top = -23.0
+offset_right = 31.5
+grow_horizontal = 2
+grow_vertical = 0
+text = "eitabixo"
+label_settings = SubResource("LabelSettings_nebbf")
+horizontal_alignment = 1
+
+[node name="SubViewport" type="SubViewport" parent="." unique_id=1581163846]
+own_world_3d = true
+transparent_bg = true
+size = Vector2i(128, 128)
+render_target_clear_mode = 2
+
+[node name="Camera2D" type="Camera2D" parent="SubViewport" unique_id=443650128]

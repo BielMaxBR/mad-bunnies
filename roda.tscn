@@ -1,0 +1,59 @@
+[gd_scene format=3 uid="uid://x2mhqdj21xe"]
+
+[ext_resource type="Texture2D" uid="uid://824u5gribs2u" path="res://icon.svg" id="1_1k3js"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_28aoi"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_66ncr"]
+size = Vector2(127, 10)
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_vvh5c"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_66ncr"]
+radius = 53.037724
+
+[sub_resource type="Gradient" id="Gradient_77phk"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.7)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_66ncr"]
+gradient = SubResource("Gradient_77phk")
+fill = 1
+fill_from = Vector2(0.49709302, 0.502907)
+fill_to = Vector2(1, 1)
+
+[node name="roda" type="RigidBody2D" unique_id=1209799443]
+disable_mode = 1
+physics_material_override = SubResource("PhysicsMaterial_28aoi")
+
+[node name="Icon2" type="Sprite2D" parent="." unique_id=1764246401]
+visible = false
+position = Vector2(0, -3)
+texture = ExtResource("1_1k3js")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=872000213]
+position = Vector2(0, -61)
+shape = SubResource("RectangleShape2D_66ncr")
+
+[node name="roda roda" type="RigidBody2D" parent="." unique_id=2037359411]
+disable_mode = 1
+physics_material_override = SubResource("PhysicsMaterial_vvh5c")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="roda roda" unique_id=660191998]
+shape = SubResource("CircleShape2D_66ncr")
+
+[node name="Icon" type="Sprite2D" parent="roda roda" unique_id=1544893706]
+scale = Vector2(1.7, 1.7)
+texture = SubResource("GradientTexture2D_66ncr")
+
+[node name="PinJoint2D" type="PinJoint2D" parent="." unique_id=893310987]
+node_a = NodePath("..")
+node_b = NodePath("../roda roda")
+motor_enabled = true
+motor_target_velocity = 69.81317
+
+[node name="Icon" type="Sprite2D" parent="." unique_id=1987158766]
+position = Vector2(-5.9604645e-08, -60.999996)
+scale = Vector2(0.988429, 0.08023854)
+texture = ExtResource("1_1k3js")

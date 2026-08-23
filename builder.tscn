@@ -1,0 +1,96 @@
+[gd_scene format=3 uid="uid://bqyrc4f4pmx42"]
+
+[ext_resource type="Texture2D" uid="uid://0bs1nbe3pdrv" path="res://quadrado.png" id="1_h1ki1"]
+[ext_resource type="Script" uid="uid://cbndjkmcj5ur" path="res://builder.gd" id="1_nebbf"]
+[ext_resource type="PackedScene" uid="uid://cy7cv4smhn0rs" path="res://bloco.tscn" id="2_clihi"]
+[ext_resource type="PackedScene" uid="uid://x2mhqdj21xe" path="res://roda.tscn" id="3_nebbf"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_l5ofj"]
+texture = ExtResource("1_h1ki1")
+texture_region_size = Vector2i(128, 128)
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_66ncr"]
+tile_size = Vector2i(128, 128)
+sources/0 = SubResource("TileSetAtlasSource_l5ofj")
+
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_h00wr"]
+resource_name = "objects"
+scenes/1/scene = ExtResource("2_clihi")
+scenes/2/scene = ExtResource("3_nebbf")
+
+[sub_resource type="TileSet" id="TileSet_74mpc"]
+tile_size = Vector2i(128, 128)
+sources/0 = SubResource("TileSetScenesCollectionSource_h00wr")
+
+[node name="Builder" type="Node2D" unique_id=32081071]
+process_mode = 2
+script = ExtResource("1_nebbf")
+
+[node name="GUI" type="CanvasLayer" parent="." unique_id=1799744934]
+
+[node name="Control" type="Control" parent="GUI" unique_id=420632515]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="MenuLeft" type="ColorRect" parent="GUI/Control" unique_id=282451168]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.21700001
+anchor_bottom = 1.0
+offset_right = -249.98401
+color = Color(0, 0, 0, 0.5058824)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GUI/Control/MenuLeft" unique_id=611219322]
+custom_minimum_size = Vector2(250, 400)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginButton" type="MarginContainer" parent="GUI/Control" unique_id=647553458]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -124.0
+offset_top = -123.0
+grow_horizontal = 0
+grow_vertical = 0
+accessibility_region = true
+
+[node name="Build" type="Button" parent="GUI/Control/MarginButton" unique_id=249787389]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "BUILD"
+
+[node name="background" type="TileMapLayer" parent="." unique_id=260012025]
+tile_set = SubResource("TileSet_66ncr")
+
+[node name="tiles" type="TileMapLayer" parent="." unique_id=265374716]
+tile_set = SubResource("TileSet_74mpc")
+
+[node name="items" type="TileMapLayer" parent="." unique_id=1335408513]
+tile_set = SubResource("TileSet_74mpc")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=301792143]
+position = Vector2(64, 64)
+
+[node name="preview" type="Sprite2D" parent="." unique_id=2054923253]
+modulate = Color(1, 1, 1, 0.49803922)
+
+[connection signal="gui_input" from="GUI/Control" to="." method="_on_control_gui_input"]
+[connection signal="pressed" from="GUI/Control/MarginButton/Build" to="." method="_on_build_pressed"]
