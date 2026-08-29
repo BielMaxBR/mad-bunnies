@@ -8,6 +8,7 @@
 size = Vector2(128, 128)
 
 [node name="Bloco" type="RigidBody2D" unique_id=1209799443]
+collision_layer = 2
 physics_material_override = SubResource("PhysicsMaterial_247xi")
 
 [node name="Icon" type="Sprite2D" parent="." unique_id=1544893706]

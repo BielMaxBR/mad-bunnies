@@ -18,8 +18,8 @@ var pos: Vector2i # usado pra posição da grid do mouse
 
 signal builded
 func add_items():
-	add("bloco",preload('res://scenes/bloco.tscn'))
-	add("roda",preload('res://scenes/roda.tscn'),[Vector2.LEFT,Vector2.RIGHT,Vector2.DOWN])
+	add("bloco",'bloco.tscn')
+	add("roda",'roda.tscn',[Vector2.LEFT,Vector2.RIGHT,Vector2.DOWN])
 
 func is_on_grid(pos: Vector2i):
 	var rect = Rect2i(Vector2.ZERO,size)
@@ -27,12 +27,14 @@ func is_on_grid(pos: Vector2i):
 	return rect.has_point(pos + size/2)
 
 func add(_name, _scene,falses = []):
-	var item = Item.new(_name,_scene)
+	var string := "res://scenes/%s" % [_scene]
+	var scene: PackedScene = load(string)
+	var item = Item.new(_name,scene)
 	for dir in falses:
 		item.sides[dir] = false
 	menu_items.append(item)
 	
-	create_item_buttom(_name,_scene)
+	create_item_buttom(_name,scene)
 
 func create_item_buttom(_name,_scene):
 	var button: TextureButton = preload("res://scenes/botao_default.tscn").instantiate()
@@ -52,6 +54,7 @@ func create_item_buttom(_name,_scene):
 func _ready() -> void:
 	generate_background()
 	add_items()
+	$Camera2D.make_current()
 
 func _process(_delta: float) -> void:
 	pos = $tiles.local_to_map(get_local_mouse_position())
@@ -129,7 +132,7 @@ func _on_build_pressed() -> void:
 			var reverse = Vector2(dir.rotated(neighbor.angle*-PI/2) * -1).round()
 			if neighbor.item.sides[reverse] == false: continue
 			var new_pin := PinJoint2D.new()
-			new_pin.bias = 0.01
+			new_pin.bias = 0.05
 			new_pin.node_a = ".."
 			new_pin.node_b = "../../%s" % [neighbor.block.name]
 			block.add_child(new_pin)

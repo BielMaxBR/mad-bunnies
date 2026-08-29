@@ -8,3 +8,6 @@ func _ready() -> void:
 	
 func _builded():
 	$Builder.hide()
+	$Builder/GUI.hide()
+	$Carro/Camera2D.enabled = true
+	$Carro/Camera2D.make_current()

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ci42tg8c3d3sw"
-path="res://.godot/imported/quadrado.png-23c66aeffdebb1d539dae4af2a57a4de.ctex"
+uid="uid://dxet0p114o2la"
+path="res://.godot/imported/roda.png-0b19497adca87d646ef6d67f7f2786f8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/quadrado.png"
-dest_files=["res://.godot/imported/quadrado.png-23c66aeffdebb1d539dae4af2a57a4de.ctex"]
+source_file="res://assets/roda.png"
+dest_files=["res://.godot/imported/roda.png-0b19497adca87d646ef6d67f7f2786f8.ctex"]
 
 [params]
 

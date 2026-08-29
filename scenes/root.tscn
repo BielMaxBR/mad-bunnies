@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://cy7cv4smhn0rs" path="res://scenes/bloco.tscn" id="2_j287u"]
 [ext_resource type="Texture2D" uid="uid://824u5gribs2u" path="res://assets/icon.svg" id="3_5sfjl"]
 [ext_resource type="Script" uid="uid://ba7xj4jm8p1xm" path="res://scripts/bloco_test.gd" id="4_3hfy5"]
+[ext_resource type="Script" uid="uid://dbas7g7lafar7" path="res://scripts/carro.gd" id="4_j287u"]
 [ext_resource type="PackedScene" uid="uid://x2mhqdj21xe" path="res://scenes/roda.tscn" id="5_7pvxh"]
 [ext_resource type="PackedScene" uid="uid://bqyrc4f4pmx42" path="res://scenes/builder.tscn" id="6_y3xxt"]
 
@@ -22,13 +23,13 @@ metadata/_edit_horizontal_guides_ = [16.0]
 [node name="Cenario" type="Node2D" parent="." unique_id=1180520847]
 
 [node name="Sprite2D" type="Sprite2D" parent="Cenario" unique_id=229203802]
-position = Vector2(4048, -835.7932)
+position = Vector2(17360, 360)
 rotation = -1.5707964
-scale = Vector2(15.842183, 20443.799)
+scale = Vector2(17.963713, 43163.96)
 texture = SubResource("GradientTexture1D_bia1i")
 
 [node name="Bloco3" parent="." unique_id=412289323 instance=ExtResource("2_j287u")]
-position = Vector2(1352, -48)
+position = Vector2(304, -352)
 mass = 0.46
 physics_material_override = SubResource("PhysicsMaterial_vvh5c")
 
@@ -44,56 +45,56 @@ polygon = PackedVector2Array(59.1, -64, -59, -64, -63.8, -59, -64, 61, -60.3, 64
 scale = Vector2(18.888205, 1.0858579)
 texture = ExtResource("3_5sfjl")
 
-[node name="carro" type="Node2D" parent="." unique_id=1516486411]
+[node name="carro_exemplo" type="Node2D" parent="." unique_id=1516486411]
 visible = false
 position = Vector2(-1320, -208)
 
-[node name="Bloco" parent="carro" unique_id=261560863 instance=ExtResource("2_j287u")]
+[node name="Bloco" parent="carro_exemplo" unique_id=261560863 instance=ExtResource("2_j287u")]
 position = Vector2(464, 128)
 script = ExtResource("4_3hfy5")
 
-[node name="joint" type="PinJoint2D" parent="carro/Bloco" unique_id=1785149896]
+[node name="joint" type="PinJoint2D" parent="carro_exemplo/Bloco" unique_id=1785149896]
 position = Vector2(64, -64)
 node_a = NodePath("..")
 node_b = NodePath("../../Bloco2")
 
-[node name="Camera2D" type="Camera2D" parent="carro/Bloco" unique_id=158608877]
+[node name="Camera2D" type="Camera2D" parent="carro_exemplo/Bloco" unique_id=158608877]
 position = Vector2(8, -72)
 enabled = false
 zoom = Vector2(0.455, 0.455)
 
-[node name="Bloco2" parent="carro" unique_id=1209799443 instance=ExtResource("2_j287u")]
+[node name="Bloco2" parent="carro_exemplo" unique_id=1209799443 instance=ExtResource("2_j287u")]
 position = Vector2(592, 128)
 mass = 2.348
 can_sleep = false
 
-[node name="joint2" type="PinJoint2D" parent="carro/Bloco2" unique_id=1626819575]
+[node name="joint2" type="PinJoint2D" parent="carro_exemplo/Bloco2" unique_id=1626819575]
 position = Vector2(-64, 64)
 node_a = NodePath("../../Bloco")
 node_b = NodePath("..")
 
-[node name="roda" parent="carro" unique_id=1320386670 instance=ExtResource("5_7pvxh")]
+[node name="roda" parent="carro_exemplo" unique_id=1320386670 instance=ExtResource("5_7pvxh")]
 position = Vector2(464, 256)
 
-[node name="PinJoint2D2" type="PinJoint2D" parent="carro/roda" unique_id=607671533]
+[node name="PinJoint2D2" type="PinJoint2D" parent="carro_exemplo/roda" unique_id=607671533]
 position = Vector2(-64, -64)
 node_a = NodePath("../../Bloco")
 node_b = NodePath("..")
 
-[node name="PinJoint2D3" type="PinJoint2D" parent="carro/roda" unique_id=714060557]
+[node name="PinJoint2D3" type="PinJoint2D" parent="carro_exemplo/roda" unique_id=714060557]
 position = Vector2(64, -64)
 node_a = NodePath("../../Bloco")
 node_b = NodePath("..")
 
-[node name="roda2" parent="carro" unique_id=1786490582 instance=ExtResource("5_7pvxh")]
+[node name="roda2" parent="carro_exemplo" unique_id=1786490582 instance=ExtResource("5_7pvxh")]
 position = Vector2(592, 256)
 
-[node name="PinJoint2D2" type="PinJoint2D" parent="carro/roda2" unique_id=312151152]
+[node name="PinJoint2D2" type="PinJoint2D" parent="carro_exemplo/roda2" unique_id=312151152]
 position = Vector2(-64, -64)
 node_a = NodePath("../../Bloco2")
 node_b = NodePath("..")
 
-[node name="PinJoint2D3" type="PinJoint2D" parent="carro/roda2" unique_id=1392673395]
+[node name="PinJoint2D3" type="PinJoint2D" parent="carro_exemplo/roda2" unique_id=1392673395]
 position = Vector2(64, -64)
 node_a = NodePath("../../Bloco2")
 node_b = NodePath("..")
@@ -103,8 +104,15 @@ position = Vector2(0, -8)
 metadata/_edit_lock_ = true
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D" unique_id=208884305]
-polygon = PackedVector2Array(1742, 589, 1760, 589, 1833, 589, 1888, 596, 1944, 596, 2017, 596, 2237, 596, 2286, 596, 2469, 589, 2745, 547, 2934, 504, 3106, 473, 3246, 406, 3350, 345, 3552, 216, 3711, 131, 3901, 27, 4029, -22, 4237, -83, 4408, -144, 4561, -230, 4800, -230, 5050, -193, 5161, -157, 5264, -77, 5307, 70, 5460, 265, 5515, 357, 5570, 479, 5662, 755, 5723, 840, 5852, 901, 6084, 920, 6157, 920, 6304, 914, 6475, 901, 6586, 828, 6622, -255, 7270, 39, 7136, 779, 6206, 1238, 1307, 1207)
+polygon = PackedVector2Array(1742, 589, 1760, 589, 1833, 589, 1888, 596, 1944, 596, 2017, 596, 2237, 596, 2286, 596, 2469, 589, 2745, 547, 2934, 504, 3106, 473, 3246, 406, 3350, 345, 3552, 216, 3711, 131, 3901, 27, 4029, -22, 4237, -83, 4408, -144, 4561, -230, 4800, -230, 5050, -193, 5161, -157, 5264, -77, 6586, 828, 8192, 1056, 9760, 688, 11896, 848, 13504, 648, 16624, 1224, 20616, 936, 24240, 1552, 28600, 1592, 31440, 1592, 33648, 1272, 36968, 368, 37576, 2832, 9136, 2104, 6744, 2080, 6206, 1238, 1307, 1207)
 
 [node name="Builder" parent="." unique_id=32081071 node_paths=PackedStringArray("root") instance=ExtResource("6_y3xxt")]
 position = Vector2(464, 104)
-root = NodePath("..")
+root = NodePath("../Carro")
+
+[node name="Carro" type="Node2D" parent="." unique_id=427980044]
+script = ExtResource("4_j287u")
+
+[node name="Camera2D" type="Camera2D" parent="Carro" unique_id=634384535]
+enabled = false
+zoom = Vector2(0.885, 0.885)
