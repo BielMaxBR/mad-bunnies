@@ -7,6 +7,7 @@ func _ready() -> void:
 	get_tree().paused = true
 	
 func _builded():
+	build_mode = false
 	$Builder.hide()
 	$Builder/GUI.hide()
 	$Carro/Camera2D.enabled = true
