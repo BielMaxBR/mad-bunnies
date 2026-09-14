@@ -11,7 +11,7 @@ func _process(delta: float) -> void:
 	if size:
 		$Camera2D.global_position = result / size
 	
-	$Camera2D.zoom.x = lerpf($Camera2D.zoom.x,camera_zoom,0.5)
+	$Camera2D.zoom.x = lerpf($Camera2D.zoom.x,camera_zoom,0.3)
 	$Camera2D.zoom.y = $Camera2D.zoom.x
 
 func _unhandled_input(event: InputEvent) -> void:
