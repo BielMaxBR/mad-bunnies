@@ -9,6 +9,7 @@ size = Vector2(128, 128)
 
 [node name="Bloco" type="RigidBody2D" unique_id=1209799443]
 collision_layer = 2
+collision_mask = 3
 physics_material_override = SubResource("PhysicsMaterial_247xi")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=696844111]
@@ -16,3 +17,19 @@ shape = SubResource("RectangleShape2D_66ncr")
 
 [node name="Icon" type="Sprite2D" parent="." unique_id=1544893706]
 texture = ExtResource("1_dcobq")
+
+[node name="point_up" type="Marker2D" parent="." unique_id=562828655]
+unique_name_in_owner = true
+position = Vector2(0, -64)
+
+[node name="point_down" type="Marker2D" parent="." unique_id=812829638]
+unique_name_in_owner = true
+position = Vector2(0, 64)
+
+[node name="point_left" type="Marker2D" parent="." unique_id=1382427513]
+unique_name_in_owner = true
+position = Vector2(-64, 0)
+
+[node name="point_right" type="Marker2D" parent="." unique_id=1600618283]
+unique_name_in_owner = true
+position = Vector2(64, 0)

@@ -17,23 +17,22 @@ var is_right_pressing = false
 var pos: Vector2i # usado pra posição da grid do mouse
 
 signal builded
+
 func add_items():
 	add("bloco",'bloco.tscn')
-	add("roda",'roda.tscn',[Vector2.LEFT,Vector2.RIGHT,Vector2.DOWN])
+	add("roda",'roda.tscn')
 
 func is_on_grid(pos: Vector2i):
 	var rect = Rect2i(Vector2.ZERO,size)
 	
 	return rect.has_point(pos + size/2)
 
-func add(_name, _scene,falses = []):
+func add(_name, _scene):
 	var string := "res://scenes/%s" % [_scene]
 	var scene: PackedScene = load(string)
 	var item = Item.new(_name,scene)
-	for dir in falses:
-		item.sides[dir] = false
+
 	menu_items.append(item)
-	
 	create_item_buttom(_name,scene)
 
 func create_item_buttom(_name,_scene):
@@ -124,21 +123,43 @@ func _on_build_pressed() -> void:
 		var item: Item = grid[item_pos].item
 		var block_angle: int = grid[item_pos].angle
 		
-		for side: Vector2 in item.sides:
-			if item.sides[side] == false: continue
+		for side: Vector2 in [Vector2.UP,Vector2.DOWN,Vector2.LEFT,Vector2.RIGHT]:
+
+			if block.has_node('point_%s' % [vec_to_side(side)]) == false: continue
 			var dir = side.rotated(block_angle*PI/2)
 			if not grid.has(item_pos + Vector2i(dir)): continue
 			var neighbor = grid[item_pos + Vector2i(dir)]
 			var reverse = Vector2(dir.rotated(neighbor.angle*-PI/2) * -1).round()
-			if neighbor.item.sides[reverse] == false: continue
+
+			if neighbor.block.has_node('point_%s' % [vec_to_side(reverse)]) == false: continue
 			var new_pin := PinJoint2D.new()
 			new_pin.bias = 0.05
-			new_pin.node_a = ".."
-			new_pin.node_b = "../../%s" % [neighbor.block.name]
-			block.add_child(new_pin)
-			new_pin.position = Vector2((Vector2(dir) + Vector2(dir).rotated(-PI/2)) * 64).rotated(block_angle*-PI/2)
+			new_pin.node_a = block.get_path()
+			new_pin.node_b = neighbor.block.get_path()
+			block.get_node('point_%s' % [vec_to_side(side)]).add_child(new_pin)
+			new_pin.position = Vector2(Vector2(dir).rotated(-PI/2) * 64)#.rotated(block_angle*-PI/2)
 
 	get_tree().paused = false
 
 	grid = {}
 	builded.emit()
+
+func vec_to_side(vec):
+	var sides = {
+		Vector2.UP: "up",
+		Vector2.DOWN: "down",
+		Vector2.LEFT: "left",
+		Vector2.RIGHT: "right"
+	}
+	assert(sides.has(vec), "vetor inválido")
+	return sides[vec]
+
+func side_to_vec(side):
+	var sides = {
+		"up":Vector2.UP,
+		"down": Vector2.DOWN,
+		"left": Vector2.LEFT,
+		"right": Vector2.RIGHT 
+	}
+	assert(sides.has(side), "lado inválido")
+	return sides[side]
