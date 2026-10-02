@@ -1,8 +1,11 @@
 extends Node2D
 
 var camera_zoom = 1
+
+var filhos: Array[Node]
+
 func _process(delta: float) -> void:
-	var filhos = get_children()
+	filhos = get_children()
 	var size = filhos.size()
 	var result = Vector2()
 	
@@ -13,7 +16,23 @@ func _process(delta: float) -> void:
 	
 	$Camera2D.zoom.x = lerpf($Camera2D.zoom.x,camera_zoom,0.3)
 	$Camera2D.zoom.y = $Camera2D.zoom.x
+	queue_redraw()
 
+func _draw() -> void:
+	var vel = Vector2.ZERO
+	var pos = Vector2.ZERO
+	
+	var total = 0
+	for filho in filhos:
+		if not filho is RigidBody2D: continue
+		vel += filho.linear_velocity
+		pos += filho.position
+		total += 1
+	
+	vel /= total * 10
+	pos /= total
+	draw_line(pos, pos + vel,Color.RED,4)
+	
 func _unhandled_input(event: InputEvent) -> void:
 	
 	if event is InputEventMouseButton and not get_parent().build_mode:

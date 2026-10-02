@@ -1,0 +1,59 @@
+[gd_scene format=3 uid="uid://dylm0aitp5ngj"]
+
+[ext_resource type="Texture2D" uid="uid://bhhe7rb4fi640" path="res://assets/grama.png" id="1_bl13t"]
+[ext_resource type="PackedScene" uid="uid://cy7cv4smhn0rs" path="res://scenes/bloco.tscn" id="2_iyx0m"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_bl13t"]
+friction = 0.03
+
+[node name="Test" type="Node2D" unique_id=253991857]
+
+[node name="chao" type="StaticBody2D" parent="." unique_id=676126569]
+position = Vector2(542, 590)
+scale = Vector2(-14.944705, 0.9872787)
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="chao" unique_id=1551630754]
+scale = Vector2(0.99999994, 1)
+polygon = PackedVector2Array(64, 128, 64, -4, -64, -4, -64, 128)
+
+[node name="Grama" type="Sprite2D" parent="chao" unique_id=176897238]
+texture = ExtResource("1_bl13t")
+
+[node name="Bloco" parent="." unique_id=1209799443 instance=ExtResource("2_iyx0m")]
+position = Vector2(992, -128)
+mass = 1.0
+
+[node name="Bloco2" parent="Bloco" unique_id=1047390865 instance=ExtResource("2_iyx0m")]
+position = Vector2(0, 192)
+mass = 1.0
+
+[node name="com_chao" type="PinJoint2D" parent="Bloco/Bloco2" unique_id=370663061]
+position = Vector2(0, 160)
+node_b = NodePath("..")
+disable_collision = false
+softness = 16.0
+angular_limit_enabled = true
+angular_limit_lower = -0.10646509
+angular_limit_upper = 0.10646509
+
+[node name="PinJoint2D" type="PinJoint2D" parent="Bloco/Bloco2" unique_id=680240484]
+node_a = NodePath("../..")
+node_b = NodePath("..")
+disable_collision = false
+softness = 16.0
+angular_limit_enabled = true
+angular_limit_lower = -0.017453292
+angular_limit_upper = 0.017453292
+motor_enabled = true
+motor_target_velocity = -2.1177826
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1356987386]
+position = Vector2(912, 328)
+physics_material_override = SubResource("PhysicsMaterial_bl13t")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D" unique_id=1339452082]
+position = Vector2(72, -40)
+build_mode = 1
+polygon = PackedVector2Array(-128, 104, -456, 224, 80, 232, 96, -96)

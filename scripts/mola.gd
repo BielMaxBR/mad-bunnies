@@ -8,4 +8,5 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	$"roda roda".angular_velocity = 50
+	#$Icon.scale.x = 128.0 / ($direito.position.x * 2)
+	pass

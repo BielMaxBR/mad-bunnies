@@ -39,9 +39,8 @@ scale = Vector2(17.963713, 43163.96)
 texture = SubResource("GradientTexture1D_bia1i")
 
 [node name="Bloco3" parent="." unique_id=412289323 instance=ExtResource("2_j287u")]
-position = Vector2(312, -192)
+position = Vector2(-456, 248)
 collision_layer = 1
-collision_mask = 3
 mass = 0.46
 physics_material_override = SubResource("PhysicsMaterial_vvh5c")
 
@@ -51,9 +50,8 @@ node_a = NodePath("..")
 node_b = NodePath("../../Bloco4")
 
 [node name="Bloco4" parent="." unique_id=1209799443 instance=ExtResource("2_j287u")]
-position = Vector2(440, -192)
+position = Vector2(-328, 248)
 collision_layer = 1
-collision_mask = 3
 mass = 0.46
 physics_material_override = SubResource("PhysicsMaterial_vvh5c")
 
@@ -129,7 +127,7 @@ node_a = NodePath("../../Bloco2")
 node_b = NodePath("..")
 
 [node name="Builder" parent="." unique_id=32081071 node_paths=PackedStringArray("root") instance=ExtResource("6_y3xxt")]
-position = Vector2(464, 104)
+position = Vector2(456, 192)
 root = NodePath("../Carro")
 
 [node name="Carro" type="Node2D" parent="." unique_id=427980044]
@@ -144,6 +142,11 @@ position = Vector2(23, -170)
 curve = SubResource("Curve2D_3hfy5")
 script = ExtResource("8_5sfjl")
 metadata/_edit_group_ = true
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Path2D" unique_id=304963554]
+collision_mask = 3
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Path2D/StaticBody2D" unique_id=1443138295]
 
 [node name="Fill" type="Polygon2D" parent="Path2D" unique_id=1812616896]
 unique_name_in_owner = true
@@ -161,8 +164,3 @@ points = PackedVector2Array(1719, 741, 1729.6658, 741.9035, 1740.7489, 742.6252,
 width = 128.0
 texture = ExtResource("9_3hfy5")
 texture_mode = 1
-
-[node name="StaticBody2D" type="StaticBody2D" parent="Path2D" unique_id=304963554]
-collision_mask = 3
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Path2D/StaticBody2D" unique_id=1443138295]

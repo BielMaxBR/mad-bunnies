@@ -21,6 +21,7 @@ signal builded
 func add_items():
 	add("bloco",'bloco.tscn')
 	add("roda",'roda.tscn')
+	add("mola",'mola.tscn')
 
 func is_on_grid(pos: Vector2i):
 	var rect = Rect2i(Vector2.ZERO,size)
@@ -124,20 +125,30 @@ func _on_build_pressed() -> void:
 		var block_angle: int = grid[item_pos].angle
 		
 		for side: Vector2 in [Vector2.UP,Vector2.DOWN,Vector2.LEFT,Vector2.RIGHT]:
-
-			if block.has_node('point_%s' % [vec_to_side(side)]) == false: continue
+			var side_name = joint_name(side)
+			if block.has_node(side_name) == false: continue
 			var dir = side.rotated(block_angle*PI/2)
 			if not grid.has(item_pos + Vector2i(dir)): continue
 			var neighbor = grid[item_pos + Vector2i(dir)]
 			var reverse = Vector2(dir.rotated(neighbor.angle*-PI/2) * -1).round()
 
-			if neighbor.block.has_node('point_%s' % [vec_to_side(reverse)]) == false: continue
+			if neighbor.block.has_node(joint_name(reverse)) == false: continue
+			var joint = block.get_node(side_name)
+			var neighbor_joint = neighbor.block.get_node(joint_name(reverse))
 			var new_pin := PinJoint2D.new()
+			new_pin.disable_collision = false
 			new_pin.bias = 0.05
-			new_pin.node_a = block.get_path()
-			new_pin.node_b = neighbor.block.get_path()
-			block.get_node('point_%s' % [vec_to_side(side)]).add_child(new_pin)
-			new_pin.position = Vector2(Vector2(dir).rotated(-PI/2) * 64)#.rotated(block_angle*-PI/2)
+			var inside = false
+			if inside:
+				new_pin.node_a = "../" + String(joint.get_path_to(block))
+				new_pin.node_b = "../" + String(joint.get_path_to(neighbor.block))
+				joint.add_child(new_pin)
+				new_pin.position = (Vector2(dir).rotated(-PI/2) * 64)
+			else:
+				new_pin.node_a = "../"
+				new_pin.node_b = joint.get_path_to(neighbor_joint.get_parent())
+				joint.get_parent().add_child(new_pin)
+				new_pin.position = joint.position + (Vector2(dir).rotated(-PI/2) * 64)
 
 	get_tree().paused = false
 
@@ -163,3 +174,6 @@ func side_to_vec(side):
 	}
 	assert(sides.has(side), "lado inválido")
 	return sides[side]
+
+func joint_name(side):
+	return "%" + 'point_%s' % [vec_to_side(side)]

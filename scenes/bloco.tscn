@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://cy7cv4smhn0rs"]
 
 [ext_resource type="Texture2D" uid="uid://byhdx1be8664p" path="res://assets/block.png" id="1_dcobq"]
+[ext_resource type="Texture2D" uid="uid://824u5gribs2u" path="res://assets/icon.svg" id="2_lrfig"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_247xi"]
 
@@ -10,6 +11,7 @@ size = Vector2(128, 128)
 [node name="Bloco" type="RigidBody2D" unique_id=1209799443]
 collision_layer = 2
 collision_mask = 3
+mass = 10.0
 physics_material_override = SubResource("PhysicsMaterial_247xi")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=696844111]
@@ -20,16 +22,40 @@ texture = ExtResource("1_dcobq")
 
 [node name="point_up" type="Marker2D" parent="." unique_id=562828655]
 unique_name_in_owner = true
-position = Vector2(0, -64)
+position = Vector2(0, -65)
+
+[node name="Icon2" type="Sprite2D" parent="point_up" unique_id=475398552]
+visible = false
+texture = ExtResource("2_lrfig")
+region_enabled = true
+region_rect = Rect2(28.12135, 50.639435, 30, 30)
 
 [node name="point_down" type="Marker2D" parent="." unique_id=812829638]
 unique_name_in_owner = true
-position = Vector2(0, 64)
+position = Vector2(0, 65)
+
+[node name="Icon3" type="Sprite2D" parent="point_down" unique_id=1548325940]
+visible = false
+texture = ExtResource("2_lrfig")
+region_enabled = true
+region_rect = Rect2(28.12135, 50.639435, 30, 30)
 
 [node name="point_left" type="Marker2D" parent="." unique_id=1382427513]
 unique_name_in_owner = true
-position = Vector2(-64, 0)
+position = Vector2(-65, 0)
+
+[node name="Icon5" type="Sprite2D" parent="point_left" unique_id=686129627]
+visible = false
+texture = ExtResource("2_lrfig")
+region_enabled = true
+region_rect = Rect2(28.12135, 50.639435, 30, 30)
 
 [node name="point_right" type="Marker2D" parent="." unique_id=1600618283]
 unique_name_in_owner = true
-position = Vector2(64, 0)
+position = Vector2(65, 0)
+
+[node name="Icon4" type="Sprite2D" parent="point_right" unique_id=1029042906]
+visible = false
+texture = ExtResource("2_lrfig")
+region_enabled = true
+region_rect = Rect2(28.12135, 50.639435, 30, 30)

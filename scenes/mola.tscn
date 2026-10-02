@@ -1,0 +1,67 @@
+[gd_scene format=3 uid="uid://bxsmp0dr3sq7q"]
+
+[ext_resource type="Script" uid="uid://b22qlb3jn5qw5" path="res://scripts/mola.gd" id="1_trbb0"]
+[ext_resource type="Texture2D" uid="uid://824u5gribs2u" path="res://assets/icon.svg" id="1_yeb1d"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_66ncr"]
+size = Vector2(32, 32)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_74mpc"]
+radius = 1.0
+
+[node name="Mola" type="RigidBody2D" unique_id=1362759006]
+collision_layer = 2
+script = ExtResource("1_trbb0")
+
+[node name="Icon" type="Sprite2D" parent="." unique_id=445420399]
+texture = ExtResource("1_yeb1d")
+region_enabled = true
+region_rect = Rect2(0, 74.024, 128, 32)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1481905055]
+shape = SubResource("RectangleShape2D_66ncr")
+
+[node name="esquedo" type="RigidBody2D" parent="." unique_id=905411812]
+position = Vector2(64, 0)
+collision_layer = 2
+
+[node name="PinJoint2D" type="PinJoint2D" parent="esquedo" unique_id=532603522]
+position = Vector2(-128, 0)
+node_a = NodePath("..")
+node_b = NodePath("../..")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="esquedo" unique_id=1194481977]
+shape = SubResource("CircleShape2D_74mpc")
+
+[node name="point_left" type="Marker2D" parent="esquedo" unique_id=1888185932]
+unique_name_in_owner = true
+position = Vector2(-128, 0)
+
+[node name="Icon2" type="Sprite2D" parent="esquedo/point_left" unique_id=1088927347]
+texture = ExtResource("1_yeb1d")
+region_enabled = true
+region_rect = Rect2(28.12135, 50.639435, 30, 30)
+
+[node name="direito" type="RigidBody2D" parent="." unique_id=155263924]
+position = Vector2(64, 0)
+collision_layer = 2
+
+[node name="point_right" type="Marker2D" parent="direito" unique_id=1911642988]
+unique_name_in_owner = true
+
+[node name="Icon2" type="Sprite2D" parent="direito/point_right" unique_id=844392404]
+texture = ExtResource("1_yeb1d")
+region_enabled = true
+region_rect = Rect2(28.12135, 50.639435, 30, 30)
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="direito" unique_id=649585350]
+shape = SubResource("CircleShape2D_74mpc")
+
+[node name="spring" type="DampedSpringJoint2D" parent="." unique_id=463418962]
+position = Vector2(-64, 0)
+rotation = -1.5707964
+node_a = NodePath("../direito")
+node_b = NodePath("../esquedo")
+bias = 0.05
+disable_collision = false
+length = 128.0
