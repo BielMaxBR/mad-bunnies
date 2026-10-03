@@ -46,8 +46,6 @@ softness = 16.0
 angular_limit_enabled = true
 angular_limit_lower = -0.017453292
 angular_limit_upper = 0.017453292
-motor_enabled = true
-motor_target_velocity = -2.1177826
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1356987386]
 position = Vector2(912, 328)
